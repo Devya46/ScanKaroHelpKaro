@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scan to Call</title>
+
+    <!-- Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 80px 20rem;
+        background: #ffcd28;
+        border: 6px solid #fff;
+        position: relative;
+      }
+
+      /* MAIN GRID */
+      .main {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      /* QR SECTION */
+      .qr-box {
+        background: #fff;
+        padding: 15px;
+      }
+
+      .qr-box img {
+        width: 280px;
+        height: auto;
+      }
+
+      /* RIGHT CONTENT */
+      .content {
+        flex: 1;
+        position: relative;
+      }
+
+      /* TITLE */
+      .title {
+        font-size: 60px;
+        font-weight: 750;
+      }
+      .title span {
+        position: relative;
+        color: #3aa6ff; /* blue text */
+      }
+
+      /* underline effect */
+      .title span::after {
+        content: "";
+        position: absolute;
+        left: -152px;
+        bottom: -1px;
+        width: 18rem;
+        height: 6px;
+        background: #3aa6ff;
+        border-radius: 8px;
+        transform: skewX(-42deg);
+      } /* gives that tilted feel */
+
+      .title span {
+        color: #2a9df4;
+        /* border-bottom: 4px solid #2a9df4; */
+      }
+
+      /* HELP LINE */
+      .help {
+        font-size: 55px;
+        font-weight: 800;
+        margin-top: 15px;
+      }
+
+      .help span {
+        color: red;
+        font-weight: 700;
+      }
+
+      .help i {
+        margin-right: -14px;
+        margin-left: 47px;
+        font-size: 58px;
+        transform: rotate(-60deg) translateY(-22%);
+      }
+      .small-img {
+        width: 50px;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+
+      /* HINDI TEXT */
+      .hindi {
+        font-size: 35px;
+        font-weight: 1000;
+        margin-top: 26px;
+        line-height: 1.3;
+        text-align: center;
+        margin-left: -90px;
+      }
+
+      /* ICON ROW */
+      .icons {
+        margin-top: 15px;
+        font-size: 28px;
+        display: flex;
+        gap: 20px;
+      }
+      .icons img {
+        width: 236px;
+        height: auto;
+        margin-top: -11px;
+        margin-bottom: 2px;
+        align-items: center;
+        margin-left: 5rem;
+      }
+
+      .icons i {
+        background: #fff;
+        padding: 10px;
+        border-radius: 50%;
+      }
+
+      /* SCAN TEXT BOX */
+      .scan-box {
+        background: #eee;
+        padding: 3px 11px;
+        margin: 0px 40px 1px 9px;
+        border-radius: 30px;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+      }
+      .top-heading {
+        line-height: 0.6px;
+      }
+
+      /* SIDE TEXT */
+      .side-left,
+      .side-right {
+        position: absolute;
+        top: 50%;
+        transform: rotate(-90deg) translateY(-50%);
+        transform-origin: left top;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .side-left {
+        right: 38.3rem;
+        top: 16rem;
+        /* letter-spacing: 1px; */
+      }
+
+      /* .side-right {
+        left: 31rem;
+        top: 0rem;
+        transform: rotate(90deg) translateY(-50%);
+        letter-spacing: 1px;
+        font-size: 17px;
+        text-decoration: underline;
+      } */
+      .side-right {
+        position: fixed;
+        left: 50rem;
+        top: 29rem;
+        transform: rotate(90deg) translateY(-50%);
+        transform-origin: right top;
+        background: #e6b80000;
+        padding: 10px 20px;
+        border-radius: 6px 6px 0 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-decoration: underline;
+      }
+
+      .side-right p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .side-right i {
+        font-size: 28px;
+        color: red;
+      }
+
+      /* BOTTOM STRIP */
+      .bottom {
+        background: #ddd;
+        padding: 15px 25px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .bottom .big {
+        font-size: 48px;
+        font-weight: 900;
+        white-space: nowrap; /* prevents breaking */
+      }
+
+      .bottom .small {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        line-height: 1.4;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .main {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .title {
+          font-size: 32px;
+        }
+
+        .help {
+          font-size: 28px;
+        }
+
+        .hindi {
+          font-size: 20px;
+        }
+
+        .qr-box img {
+          width: 220px;
+        }
+
+        .bottom .big {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="main">
+        <!-- LEFT QR -->
+        <div class="qr-box">
+          <img src="Scanner.png" alt="QR Code" />
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="content">
+          <div class="top-heading">
+            <div class="title">
+              Scan<span> करो</span>
+              <img class="small-img" src="Scanner.png" alt="" />
+            </div>
+
+            <div class="help">
+              <i class="fa fa-volume-control-phone"></i>
+              <span>Help</span> करो
+            </div>
+          </div>
+
+          <div class="hindi">
+            स्मार्ट बनो, स्कैन करो,<br />
+            वाहन चालक से बात करो
+          </div>
+
+          <div class="icons">
+            <img src="icons.png" style="padding-left: 16px" alt="IconsS" />
+          </div>
+
+          <div class="scan-box">
+            SCAN USING PHONE CAMERA, GOOGLE LENS OR ANY OTHER SCANNER APP
+          </div>
+
+          <!-- SIDE TEXT -->
+          <div class="side-left">https://www.scankarohelpkaro.com</div>
+
+          <div class="side-right">
+            <p>
+              https://www.scankarohelpkaro.com
+              <i
+                class="fa fa-youtube-play"
+                style="font-size: 38px; color: red"
+              ></i>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM -->
+      <div class="bottom">
+        <div class="big">SCAN TO CALL</div>
+        <div class="small">
+          Wrong Parking, Emergency Contact,<br />
+          any issue with the vehicle, Scan the QR
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
