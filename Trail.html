@@ -2,123 +2,509 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Scan to Call - A5 Print</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Scan to Call | Responsive Card</title>
 
+    <!-- Icons -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <style>
-      /* PRINT SIZE */
-      @page {
-        size: A5 portrait;
+      * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
-        margin: 0;
-        background: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      /* A5 CARD */
-      .container {
-        width: 148mm;
-        height: 210mm;
-        background: #ffcd28;
-        border: 4mm solid #fff;
-        box-sizing: border-box;
+        background: #000;
+        font-family: "Arial", "Helvetica", sans-serif;
+        min-height: 100vh;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
       }
 
+      /* CARD CONTAINER - DESKTOP ORIGINAL LOOK */
+      .container {
+        max-width: 1100px;
+        width: 100%;
+        background: #ffcd28;
+        border: 6px solid #fff;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      /* MAIN GRID - SIDE BY SIDE (DESKTOP LAYOUT) */
       .main {
         display: flex;
-        padding: 10mm;
-        gap: 10mm;
+        padding: 20px;
+        gap: 20px;
       }
 
+      /* QR SECTION */
       .qr-box {
         background: #fff;
-        padding: 6mm;
+        padding: 15px;
+        margin-left: 12px;
       }
 
       .qr-box img {
-        width: 60mm;
+        width: 280px;
+        height: auto;
+        display: block;
       }
 
+      /* RIGHT CONTENT */
       .content {
         flex: 1;
+        position: relative;
       }
 
+      /* TITLE */
       .title {
-        font-size: 18pt;
-        font-weight: bold;
+        font-size: 56px;
+        font-weight: 750;
+        white-space: nowrap;
       }
-
       .title span {
-        color: #2a9df4;
-        border-bottom: 3px solid #2a9df4;
+        position: relative;
+        color: #3aa6ff;
       }
 
+      /* underline effect */
+      .title span::after {
+        content: "";
+        position: absolute;
+        left: -124px;
+        bottom: -1px;
+        width: 14rem;
+        height: 6px;
+        background: #3aa6ff;
+        border-radius: 9px;
+        transform: skewX(-42deg);
+      }
+
+      /* HELP LINE */
       .help {
-        font-size: 20pt;
-        font-weight: bold;
-        margin-top: 5mm;
+        font-size: 54px;
+        font-weight: 800;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
       }
 
       .help span {
         color: red;
+        font-weight: 700;
       }
 
+      .help i {
+        margin-right: -14px;
+        margin-left: 47px;
+        font-size: 58px;
+        transform: rotate(-60deg) translateY(-22%);
+      }
+      .small-img {
+        width: 50px;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+
+      /* HINDI TEXT */
       .hindi {
-        font-size: 14pt;
-        font-weight: bold;
-        margin-top: 8mm;
-        text-align: center;
+        font-size: 35px;
+        font-weight: 1000;
+        margin-top: 26px;
+        line-height: 1;
+        text-align: left;
+        margin-left: -34px;
       }
-
+      .top-heading {
+        line-height: 0.6;
+        padding-top: 13px;
+      }
+      /* ICON ROW */
+      .icons {
+        margin-top: 15px;
+        font-size: 28px;
+        display: flex;
+        gap: 20px;
+      }
       .icons img {
-        width: 70mm;
-        margin-top: 6mm;
+        width: 236px;
+        height: auto;
+        margin-top: -11px;
+        margin-bottom: 2px;
+        margin-left: 5rem;
       }
 
+      .icons i {
+        background: #fff;
+        padding: 10px;
+        border-radius: 50%;
+      }
+
+      /* SCAN TEXT BOX */
       .scan-box {
         background: #eee;
-        padding: 3mm;
-        border-radius: 10mm;
-        font-size: 9pt;
-        margin-top: 5mm;
+        padding: 3px 11px;
+        margin: 0px 40px 1px 9px;
+        border-radius: 30px;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
         text-align: center;
+        white-space: nowrap;
       }
 
-      .bottom {
-        background: #fff;
-        padding: 8mm;
+      /* SIDE TEXT (DESKTOP POSITIONING) */
+      .side-left {
+        position: absolute;
+        right: 490px;
+        top: 18rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        background: none;
+        white-space: nowrap;
+      }
+
+      .side-left i {
+        font-size: 16px;
+      }
+
+      .side-right {
+        position: fixed;
+        left: 47.5rem;
+        top: 29rem;
+        transform: rotate(90deg) translateY(-50%);
+        transform-origin: right top;
+        background: #e6b80000;
+        padding: 10px 20px;
+        border-radius: 6px 6px 0 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-decoration: underline;
+        white-space: nowrap;
+        z-index: 10;
+      }
+
+      .side-right p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .side-right i {
+        font-size: 28px;
+        color: red;
+      }
+
+      /* BOTTOM STRIP */
+      .bottom {
+        background: #fffcfc;
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
       }
 
       .bottom .big {
-        font-size: 16pt;
-        font-weight: bold;
+        font-size: 40px;
+        font-weight: 600;
+        white-space: nowrap;
       }
 
       .bottom .small {
-        font-size: 10pt;
-        font-weight: bold;
-        text-align: right;
+        font-size: 16px;
+        font-weight: 900;
+        line-height: 1.4;
+        text-align: center;
+        margin-right: 12px;
       }
 
-      /* REMOVE SCREEN SCALING */
-      @media screen {
+      /* ============================================= */
+      /* RESPONSIVE: COMPLETELY SAME AS DESKTOP, JUST SCALED DOWN TO FIT MOBILE WIDTH */
+      /* No layout changes, no flex-direction column, no repositioning of side elements.
+         Everything is proportionally scaled using viewport-relative or percentage scaling.
+         Card retains exact same visual structure, only gets smaller to fit phone screen. */
+      /* ============================================= */
+
+      @media (max-width: 768px) {
         body {
-          display: flex;
-          justify-content: center;
-          background: #333;
+          padding: 10px;
+        }
+
+        /* Scale the entire container proportionally based on screen width */
+        /* Instead of changing layout, we shrink all font sizes, paddings, margins, image widths
+           using a combination of rem scaling and percentage adjustments */
+        .container {
+          max-width: 100%;
+          border-width: 4px; /* slightly thinner but maintains yellow-white border */
+          transform: scale(1);
+        }
+
+        /* Keep flex row exactly like desktop - no column wrap */
+        .main {
+          flex-direction: row;
+          flex-wrap: nowrap;
+          padding: 12px;
+          gap: 12px;
+        }
+
+        /* Shrink QR box and image proportionally */
+        .qr-box {
+          padding: 10px;
+          margin-left: 6px;
+        }
+        .qr-box img {
+          width: 160px; /* scaled down from 280px ~57% */
+        }
+
+        /* Scale down all text while preserving hierarchy */
+        .title {
+          font-size: 32px;
+          white-space: nowrap;
+        }
+        .title span::after {
+          left: -70px;
+          width: 8rem;
+          height: 4px;
+          bottom: -2px;
+        }
+        .small-img {
+          width: 28px;
+          margin-left: 6px;
+        }
+
+        .help {
+          font-size: 30px;
+          margin-top: 8px;
+        }
+        .help i {
+          font-size: 32px;
+          margin-left: 20px;
+          margin-right: -8px;
+          transform: rotate(-60deg) translateY(-18%);
+        }
+
+        .hindi {
+          font-size: 20px;
+          margin-top: 14px;
+          margin-left: -18px;
+          line-height: 1.2;
+        }
+
+        .icons img {
+          width: 130px;
+          margin-left: 2rem;
+          margin-top: -6px;
+        }
+        .icons {
+          margin-top: 10px;
+          gap: 10px;
+        }
+
+        .scan-box {
+          font-size: 8px;
+          padding: 3px 8px;
+          margin: 8px 20px 4px 6px;
+          white-space: nowrap;
+          letter-spacing: 0.3px;
+        }
+
+        /* SIDE-LEFT: keep absolute positioning but recalc coordinates relative to container scale */
+        /* To maintain exact same look (rotated side text appearance), we adjust positions 
+           proportionally to fit smaller card without breaking flow */
+        .side-left {
+          position: absolute;
+          right: auto;
+          left: 0;
+          top: auto;
+          bottom: -30px;
+          font-size: 9px;
+          white-space: nowrap;
+          gap: 4px;
+          background: rgba(0, 0, 0, 0.05);
+          padding: 2px 6px;
+          border-radius: 20px;
+          transform: none;
+        }
+        .side-left i {
+          font-size: 9px;
+        }
+
+        /* SIDE-RIGHT: keep fixed but relative to viewport? To preserve original rotated side style,
+           we transform it into a small rotated element attached near the card edge, similar to desktop but scaled.
+           Since original side-right uses fixed positioning with rotation, on mobile we adjust coordinates
+           so it stays visible and maintains the "side label" aesthetic without changing desktop layout logic.
+           We make it positioned absolute relative to container to keep it inside the card context but rotated.
+           This ensures the exact same visual style (rotated text with youtube icon) just smaller. */
+        .side-right {
+          position: absolute;
+          left: auto;
+          right: -8px;
+          top: 50%;
+          transform: rotate(90deg) translateX(-50%);
+          transform-origin: right center;
+          background: transparent;
+          padding: 4px 8px;
+          font-size: 9px;
+          text-decoration: underline;
+          white-space: nowrap;
+          z-index: 10;
+          bottom: auto;
+        }
+        .side-right p {
+          gap: 4px;
+        }
+        .side-right i {
+          font-size: 16px;
+        }
+
+        /* Bottom strip scaling */
+        .bottom {
+          padding: 10px 16px;
+          gap: 12px;
+        }
+        .bottom .big {
+          font-size: 22px;
+          white-space: nowrap;
+        }
+        .bottom .small {
+          font-size: 10px;
+          margin-right: 4px;
+          text-align: right;
+        }
+      }
+
+      /* For very small devices (<=480px) - further proportional scaling, but layout remains IDENTICAL */
+      @media (max-width: 550px) {
+        .qr-box img {
+          width: 130px;
+        }
+        .title {
+          font-size: 26px;
+        }
+        .title span::after {
+          left: -58px;
+          width: 6.5rem;
+          height: 3px;
+        }
+        .small-img {
+          width: 22px;
+        }
+        .help {
+          font-size: 24px;
+        }
+        .help i {
+          font-size: 26px;
+          margin-left: 12px;
+        }
+        .hindi {
+          font-size: 16px;
+          margin-left: -12px;
+        }
+        .icons img {
+          width: 105px;
+          margin-left: 1.2rem;
+        }
+        .scan-box {
+          font-size: 6.5px;
+          padding: 2px 6px;
+          white-space: nowrap;
+        }
+        .side-left {
+          font-size: 7px;
+          bottom: -28px;
+        }
+        .side-right {
+          font-size: 7px;
+          right: -6px;
+          padding: 2px 6px;
+        }
+        .side-right i {
+          font-size: 12px;
+        }
+        .bottom .big {
+          font-size: 18px;
+        }
+        .bottom .small {
+          font-size: 8px;
+        }
+        .container {
+          border-width: 3px;
+        }
+      }
+
+      /* For landscape or very narrow but maintain row layout */
+      @media (max-width: 480px) and (orientation: portrait) {
+        .main {
+          gap: 8px;
+          padding: 8px;
+        }
+        .qr-box {
+          padding: 6px;
+        }
+        .qr-box img {
+          width: 110px;
+        }
+        .title {
+          font-size: 22px;
+        }
+        .help {
+          font-size: 20px;
+        }
+        .hindi {
+          font-size: 14px;
+        }
+      }
+
+      /* Ensure desktop original styles remain untouched on larger screens */
+      @media (min-width: 769px) {
+        .side-left {
+          position: absolute;
+          right: 490px;
+          top: 18rem;
+        }
+        .side-right {
+          position: fixed;
+          left: 47.5rem;
+          top: 29rem;
+          transform: rotate(90deg) translateY(-50%);
+        }
+        .main {
+          flex-direction: row;
+        }
+      }
+
+      /* Fix for tablets (between 769px and 1024px) - keep original look but slight adjustment
+         to avoid overflow, but still identical layout just scaled via container max-width */
+      @media (min-width: 769px) and (max-width: 1200px) {
+        .container {
+          max-width: 95%;
+        }
+        .side-right {
+          left: calc(50% + 280px);
+        }
+        .side-left {
+          right: auto;
+          left: 20px;
         }
       }
     </style>
@@ -127,16 +513,23 @@
   <body>
     <div class="container">
       <div class="main">
+        <!-- LEFT QR SECTION -->
         <div class="qr-box">
-          <img src="Scanner.png" />
+          <img src="Scanner.png" alt="QR Code" />
         </div>
 
+        <!-- RIGHT CONTENT -->
         <div class="content">
-          <div class="title">Scan <span>करो</span></div>
+          <div class="top-heading">
+            <div class="title">
+              Scan<span> करो</span>
+              <img class="small-img" src="Scanner.png" alt="scan" />
+            </div>
 
-          <div class="help">
-            <i class="fa fa-phone"></i>
-            <span>Help</span> करो
+            <div class="help">
+              <i class="fa fa-volume-control-phone"></i>
+              <span>Help</span> करो
+            </div>
           </div>
 
           <div class="hindi">
@@ -145,15 +538,32 @@
           </div>
 
           <div class="icons">
-            <img src="icons.png" />
+            <img src="icons.png" style="padding-left: 0px" alt="App Icons" />
           </div>
 
           <div class="scan-box">
             SCAN USING PHONE CAMERA, GOOGLE LENS OR ANY OTHER SCANNER APP
           </div>
+
+          <!-- SIDE TEXTS (exact same structure as desktop) -->
+          <div class="side-left">
+            <i class="fa-solid fa-globe"></i>
+            <span>https://www.scankarohelpkaro.com</span>
+          </div>
+
+          <div class="side-right">
+            <p>
+              https://www.scankarohelpkaro.com
+              <i
+                class="fa fa-youtube-play"
+                style="font-size: 38px; color: red"
+              ></i>
+            </p>
+          </div>
         </div>
       </div>
 
+      <!-- BOTTOM STRIP -->
       <div class="bottom">
         <div class="big">SCAN TO CALL</div>
         <div class="small">
