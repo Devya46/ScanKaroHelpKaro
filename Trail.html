@@ -2,547 +2,141 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>Scan to Call | Smart QR Connect</title>
+    <title>Scan to Call - A5 Print</title>
 
-    <!-- Icons -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
 
     <style>
-      * {
+      /* PRINT SIZE */
+      @page {
+        size: A5 portrait;
         margin: 0;
-        padding: 0;
-        box-sizing: border-box;
       }
 
       body {
-        background: #000;
-        font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 24px 16px;
+        margin: 0;
+        background: #fff;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
-      /* MAIN CARD – identical desktop dimensions, but becomes flexible on mobile */
+      /* A5 CARD */
       .container {
-        max-width: 1100px;
-        width: 100%;
-        margin: 0 auto;
+        width: 148mm;
+        height: 210mm;
         background: #ffcd28;
-        border: 6px solid #fff;
-        position: relative;
-        transition: all 0.2s ease;
+        border: 4mm solid #fff;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
-      /* MAIN GRID – unchanged layout on desktop */
       .main {
         display: flex;
-        padding: 20px;
-        gap: 20px;
-        flex-wrap: wrap; /* allows wrapping on small screens, but desktop gap remains */
+        padding: 10mm;
+        gap: 10mm;
       }
 
-      /* QR SECTION – same visual weight */
       .qr-box {
         background: #fff;
-        padding: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 6mm;
       }
 
       .qr-box img {
-        width: 280px;
-        height: auto;
-        display: block;
-        object-fit: contain;
+        width: 60mm;
       }
 
-      /* RIGHT CONTENT */
       .content {
         flex: 1;
-        position: relative;
-        min-width: 220px;
       }
 
-      /* TITLE + underline effect (exact same) */
       .title {
-        font-size: 60px;
-        font-weight: 750;
-        line-height: 1.1;
-        white-space: nowrap;
-      }
-
-      .title span {
-        position: relative;
-        color: #3aa6ff;
-      }
-
-      .title span::after {
-        content: "";
-        position: absolute;
-        left: -152px;
-        bottom: -1px;
-        width: 18rem;
-        height: 6px;
-        background: #3aa6ff;
-        border-radius: 8px;
-        transform: skewX(-42deg);
+        font-size: 18pt;
+        font-weight: bold;
       }
 
       .title span {
         color: #2a9df4;
+        border-bottom: 3px solid #2a9df4;
       }
 
-      /* small icon inside title */
-      .small-img {
-        width: 50px;
-        vertical-align: middle;
-        margin-left: 10px;
-      }
-
-      /* HELP LINE */
       .help {
-        font-size: 55px;
-        font-weight: 800;
-        margin-top: 15px;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 6px;
+        font-size: 20pt;
+        font-weight: bold;
+        margin-top: 5mm;
       }
 
       .help span {
         color: red;
-        font-weight: 700;
       }
 
-      .help i {
-        margin-right: -6px;
-        margin-left: 0;
-        font-size: 58px;
-        transform: rotate(-60deg) translateY(-10%);
-        display: inline-block;
-      }
-
-      /* HINDI TEXT */
       .hindi {
-        font-size: 35px;
-        font-weight: 1000;
-        margin-top: 26px;
-        line-height: 1.3;
+        font-size: 14pt;
+        font-weight: bold;
+        margin-top: 8mm;
         text-align: center;
-        margin-left: -90px;
-      }
-
-      /* ICON ROW */
-      .icons {
-        margin-top: 15px;
-        font-size: 28px;
-        display: flex;
-        gap: 20px;
-        justify-content: flex-start;
       }
 
       .icons img {
-        width: 236px;
-        height: auto;
-        margin-top: -11px;
-        margin-bottom: 2px;
-        margin-left: 5rem;
+        width: 70mm;
+        margin-top: 6mm;
       }
 
-      .icons i {
-        background: #fff;
-        padding: 10px;
-        border-radius: 50%;
-      }
-
-      /* SCAN TEXT BOX */
       .scan-box {
         background: #eee;
-        padding: 6px 16px;
-        margin: 18px 40px 8px 9px;
-        border-radius: 30px;
-        font-weight: bold;
-        display: inline-block;
-        font-size: 14px;
+        padding: 3mm;
+        border-radius: 10mm;
+        font-size: 9pt;
+        margin-top: 5mm;
         text-align: center;
-        letter-spacing: 0.3px;
       }
 
-      .top-heading {
-        line-height: 0.6px;
-      }
-
-      /* SIDE TEXT (rotated left) - stays relative within content */
-      .side-left {
-        position: absolute;
-        top: 50%;
-        left: -82px;
-        transform: rotate(-90deg) translateY(-50%);
-        transform-origin: left top;
-        font-size: 14px;
-        font-weight: bold;
-        white-space: nowrap;
-        color: #000;
-        background: transparent;
-      }
-
-      /* side-right rotated (originally fixed) – we adapt within container to preserve desktop look */
-      .side-right {
-        position: absolute;
-        right: -50px;
-        top: 50%;
-        transform: rotate(90deg) translateY(-50%);
-        transform-origin: right top;
-        background: transparent;
-        font-size: 16px;
-        letter-spacing: 1px;
-        text-decoration: underline;
-        white-space: nowrap;
-      }
-
-      .side-right p {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .side-right i {
-        font-size: 32px;
-        color: red;
-      }
-
-      /* BOTTOM STRIP – exactly same */
       .bottom {
-        background: #ddd;
-        padding: 15px 25px;
+        background: #fff;
+        padding: 8mm;
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
+        align-items: center;
       }
 
       .bottom .big {
-        font-size: 48px;
-        font-weight: 900;
-        white-space: nowrap;
+        font-size: 16pt;
+        font-weight: bold;
       }
 
       .bottom .small {
-        font-size: 18px;
+        font-size: 10pt;
         font-weight: bold;
         text-align: right;
-        line-height: 1.4;
       }
 
-      /* ---------- RESPONSIVE: SAME DESKTOP LOOK, BUT CARD SHRINKS PROPORTIONALLY ON SMALL SCREENS ---------- */
-      /* For screens up to 1100px, container uses full width, but no layout changes */
-      @media (max-width: 1150px) {
-        .container {
-          max-width: 100%;
-          margin: 0;
-        }
-
-        /* Adjust side rotated elements so they don't overflow container on medium screens */
-        .side-left {
-          left: -65px;
-        }
-        .side-right {
-          right: -40px;
-        }
-      }
-
-      /* For tablets and smaller devices - card becomes compact but preserves all original styles */
-      @media (max-width: 960px) {
-        .main {
-          padding: 16px;
-          gap: 20px;
-        }
-
-        .qr-box img {
-          width: 240px;
-        }
-
-        .title {
-          font-size: 48px;
-          white-space: normal;
-        }
-        .title span::after {
-          left: -120px;
-          width: 14rem;
-          height: 5px;
-        }
-
-        .help {
-          font-size: 44px;
-        }
-        .help i {
-          font-size: 48px;
-        }
-
-        .hindi {
-          font-size: 28px;
-          margin-left: 0px;
-          text-align: center;
-        }
-
-        .icons img {
-          width: 180px;
-          margin-left: 1rem;
-        }
-
-        .scan-box {
-          margin: 15px 20px 8px 0px;
-          font-size: 12px;
-        }
-
-        .bottom .big {
-          font-size: 36px;
-          white-space: normal;
-        }
-        .bottom .small {
-          font-size: 15px;
-        }
-
-        .side-left {
-          left: -48px;
-          font-size: 11px;
-        }
-        .side-right {
-          right: -32px;
-          font-size: 12px;
-        }
-        .side-right i {
-          font-size: 26px;
-        }
-      }
-
-      /* Mobile (<= 768px) – more compact but SAME design language, no visual breaking */
-      @media (max-width: 768px) {
+      /* REMOVE SCREEN SCALING */
+      @media screen {
         body {
-          padding: 16px 12px;
-        }
-
-        .container {
-          border-width: 4px;
-        }
-
-        .main {
-          flex-direction: column;
-          align-items: center;
-          padding: 16px;
-          gap: 16px;
-        }
-
-        .qr-box {
-          width: fit-content;
-          padding: 12px;
-        }
-
-        .qr-box img {
-          width: 220px;
-        }
-
-        .content {
-          width: 100%;
-          text-align: center;
-        }
-
-        .title {
-          font-size: 42px;
-          text-align: center;
-          white-space: normal;
-          display: inline-block;
-          width: auto;
-        }
-        .title span::after {
-          left: -100px;
-          width: 11rem;
-          bottom: -2px;
-        }
-
-        .help {
-          font-size: 38px;
+          display: flex;
           justify-content: center;
-          margin-top: 8px;
+          background: #333;
         }
-        .help i {
-          font-size: 42px;
-          margin-right: 0px;
-        }
-
-        .hindi {
-          font-size: 24px;
-          margin-left: 0;
-          margin-top: 16px;
-        }
-
-        .icons {
-          justify-content: center;
-          margin-top: 10px;
-        }
-        .icons img {
-          width: 170px;
-          margin-left: 0;
-        }
-
-        .scan-box {
-          margin: 16px auto 10px auto;
-          display: block;
-          width: fit-content;
-          font-size: 11px;
-          padding: 5px 14px;
-        }
-
-        /* rotated side elements become less intrusive but still present */
-        .side-left {
-          position: absolute;
-          left: -30px;
-          top: 55%;
-          font-size: 10px;
-          transform: rotate(-90deg) translateY(-50%);
-        }
-        .side-right {
-          right: -28px;
-          top: 55%;
-          font-size: 10px;
-          transform: rotate(90deg) translateY(-50%);
-        }
-        .side-right p {
-          gap: 5px;
-        }
-        .side-right i {
-          font-size: 20px;
-        }
-
-        .bottom {
-          padding: 12px 18px;
-          gap: 12px;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        .bottom .big {
-          font-size: 32px;
-          white-space: normal;
-        }
-        .bottom .small {
-          text-align: center;
-          font-size: 14px;
-        }
-      }
-
-      /* very small devices (<= 480px) – further scale but no style changes, just tighter */
-      @media (max-width: 480px) {
-        .container {
-          border-width: 3px;
-        }
-        .qr-box img {
-          width: 180px;
-        }
-        .title {
-          font-size: 32px;
-        }
-        .title span::after {
-          left: -78px;
-          width: 8rem;
-          height: 4px;
-        }
-        .small-img {
-          width: 36px;
-          margin-left: 5px;
-        }
-        .help {
-          font-size: 30px;
-        }
-        .help i {
-          font-size: 34px;
-        }
-        .hindi {
-          font-size: 20px;
-        }
-        .icons img {
-          width: 140px;
-        }
-        .side-left {
-          left: -22px;
-          font-size: 8px;
-        }
-        .side-right {
-          right: -20px;
-          font-size: 8px;
-        }
-        .side-right i {
-          font-size: 16px;
-        }
-        .bottom .big {
-          font-size: 26px;
-        }
-        .bottom .small {
-          font-size: 12px;
-        }
-      }
-
-      /* preserve absolute positions but never break out of card – add overflow visible to container? */
-      .container {
-        overflow: visible;
-      }
-
-      /* For better visual on rotated text, keep text color strong */
-      .side-left,
-      .side-right {
-        font-weight: bold;
-        color: #1e1e1e;
-        text-decoration: none;
-      }
-      .side-right {
-        text-decoration: underline;
       }
     </style>
   </head>
+
   <body>
     <div class="container">
       <div class="main">
-        <!-- LEFT QR SECTION (exactly same) -->
         <div class="qr-box">
-          <img
-            src="https://placehold.co/400x400/f5f5f5/2a9df4?text=QR+CODE"
-            alt="QR Code"
-          />
+          <img src="Scanner.png" />
         </div>
 
-        <!-- RIGHT CONTENT with all elements preserved -->
         <div class="content">
-          <div class="top-heading">
-            <div class="title">
-              Scan<span> करो</span>
-              <img
-                class="small-img"
-                src="https://placehold.co/60x60/ffffff/3aa6ff?text=📱"
-                alt="scan icon"
-              />
-            </div>
+          <div class="title">Scan <span>करो</span></div>
 
-            <div class="help">
-              <i class="fa fa-volume-control-phone"></i>
-              <span>Help</span> करो
-            </div>
+          <div class="help">
+            <i class="fa fa-phone"></i>
+            <span>Help</span> करो
           </div>
 
           <div class="hindi">
@@ -551,33 +145,15 @@
           </div>
 
           <div class="icons">
-            <img
-              src="https://placehold.co/240x60/ffcd28/000000?text=📲+👥+🚗"
-              style="padding-left: 0px"
-              alt="Icons set"
-            />
+            <img src="icons.png" />
           </div>
 
           <div class="scan-box">
             SCAN USING PHONE CAMERA, GOOGLE LENS OR ANY OTHER SCANNER APP
           </div>
-
-          <!-- SIDE TEXTS with original placement -->
-          <div class="side-left">https://www.scankarohelpkaro.com</div>
-
-          <div class="side-right">
-            <p>
-              https://www.scankarohelpkaro.com
-              <i
-                class="fa fa-youtube-play"
-                style="font-size: 38px; color: red"
-              ></i>
-            </p>
-          </div>
         </div>
       </div>
 
-      <!-- BOTTOM SECTION (unchanged) -->
       <div class="bottom">
         <div class="big">SCAN TO CALL</div>
         <div class="small">
@@ -586,10 +162,5 @@
         </div>
       </div>
     </div>
-
-    <!-- simple fallback to ensure placeholder images replicate same style but functional without external broken images.
-     also note we preserve all original class names and structure. The only difference is actual QR image source
-     is a placeholder, but same dimensions & style. To match original design exactly, I can keep a placeholder but
-     you can replace the src with your own "Scanner.png". I'll keep consistent layout. -->
   </body>
 </html>

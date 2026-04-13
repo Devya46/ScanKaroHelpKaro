@@ -41,6 +41,7 @@
       .qr-box {
         background: #fff;
         padding: 15px;
+        margin-left: 12px;
       }
 
       .qr-box img {
@@ -168,9 +169,18 @@
       }
 
       .side-left {
+        position: absolute;
+        right: 490px;
+        top: 18rem;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* space between icon & text */
         font-size: 16px;
-        right: 517px;
-        top: 17rem;
+        background: none; /* no background */
+      }
+
+      .side-left i {
+        font-size: 16px;
       }
 
       /* .side-right {
@@ -209,7 +219,7 @@
 
       /* BOTTOM STRIP */
       .bottom {
-        background: #ddd;
+        background: #fffcfc;
         padding: 15px 25px;
 
         display: flex;
@@ -225,9 +235,11 @@
       }
 
       .bottom .small {
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 18px;
+        font-weight: 1000;
         line-height: 1.4;
+        text-align: center;
+        margin-right: 8px;
       }
 
       /* RESPONSIVE */
@@ -297,7 +309,8 @@
 
           <!-- SIDE TEXT -->
           <div class="side-left">
-            <i class="fa-solid fa-globe"></i> https://www.scankarohelpkaro.com
+            <i class="fa-solid fa-globe"></i>
+            <span>https://www.scankarohelpkaro.com</span>
           </div>
 
           <div class="side-right">
