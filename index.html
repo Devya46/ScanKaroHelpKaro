@@ -14,6 +14,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Devanagari:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NZ+Basic:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       body {
@@ -40,12 +46,12 @@
       /* QR SECTION */
       .qr-box {
         background: #fff;
-        padding: 15px;
+        padding: 10px;
         margin-left: 12px;
       }
 
       .qr-box img {
-        width: 280px;
+        width: 290px;
         height: auto;
         margin-top: 11px;
       }
@@ -58,8 +64,8 @@
 
       /* TITLE */
       .title {
-        font-size: 56px;
-        font-weight: 750;
+        font-size: 60px;
+        font-weight: 790;
       }
       .title span {
         position: relative;
@@ -70,9 +76,9 @@
       .title span::after {
         content: "";
         position: absolute;
-        left: -124px;
-        bottom: -1px;
-        width: 14rem;
+        left: -130px;
+        bottom: 8px;
+        width: 14.5rem;
         height: 6px;
         background: #3aa6ff;
         border-radius: 9px;
@@ -81,22 +87,27 @@
 
       .title span {
         color: #2a9df4;
+        -webkit-text-stroke:;
+        font-family: "Noto Sans Devanagari", sans-serif;
         /* border-bottom: 4px solid #2a9df4; */
       }
 
       /* HELP LINE */
       .help {
         font-size: 54px;
-        font-weight: 800;
+        font-weight: 750;
         margin-top: 15px;
       }
 
       .help span {
         color: red;
-        font-weight: 700;
+        font-weight: 750;
       }
       .help .karo {
         color: #3aa6ff;
+        -webkit-text-stroke:;
+        font-size: 58px;
+        font-family: "Noto Sans Devanagari", sans-serif;
       }
 
       .help i {
@@ -115,13 +126,13 @@
       /* HINDI TEXT */
       .hindi {
         font-size: 35px;
-        font-weight: 500;
         margin-top: 26px;
         line-height: 1;
         text-align: center;
         margin-left: -34px;
         -webkit-text-stroke: 2px black;
-        letter-spacing: 2.5px;
+        letter-spacing: 3.5px;
+        font-family: "Noto Sans Devanagari", sans-serif;
       }
       .top-heading {
         line-height: 0.6;
@@ -147,6 +158,11 @@
         background: #fff;
         padding: 10px;
         border-radius: 50%;
+      }
+      .Phone {
+        width: 45px;
+        height: 48px;
+        margin-left: 23px;
       }
 
       /* SCAN TEXT BOX */
@@ -320,7 +336,12 @@
             </div>
 
             <div class="help">
-              <i class="fa fa-volume-control-phone"></i>
+              <!-- <i class="fa fa-volume-control-phone"></i> -->
+              <img
+                class="Phone"
+                src="https://cdn-icons-png.flaticon.com/128/11081/11081337.png"
+                alt=""
+              />
               <span>Help</span> <span class="karo">करो</span>
             </div>
           </div>
